@@ -1,4 +1,4 @@
-package GoHelperFunctions
+package FileLoaders
 
 import (
 	"bufio"
