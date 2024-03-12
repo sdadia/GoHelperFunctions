@@ -1,8 +1,10 @@
 package GoHelperFunctions
 
 import (
+	"fmt"
 	"log/slog"
 	"os"
+	"path/filepath"
 )
 
 func ReadFile(fileName string) (string, error) {
@@ -16,7 +18,7 @@ func ReadFile(fileName string) (string, error) {
 
 }
 
-func ls(directoryPath string) ([]string, []string, error) {
+func listDirectory(directoryPath string) ([]string, []string, error) {
 
 	var files = []string{}
 	var directories = []string{}
@@ -36,4 +38,23 @@ func ls(directoryPath string) ([]string, []string, error) {
 	}
 
 	return files, directories, nil
+}
+
+func ListFilesRecursively(dir string) ([]string, error) {
+
+	var files = []string{}
+	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		if !info.IsDir() {
+			files = append(files, info.Name())
+			fmt.Println(path)
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	return files, nil
 }
