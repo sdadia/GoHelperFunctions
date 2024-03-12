@@ -1,7 +1,6 @@
 package GoHelperFunctions
 
 import (
-	"fmt"
 	"log/slog"
 	"os"
 	"path/filepath"
@@ -49,7 +48,6 @@ func ListFilesRecursively(dir string) ([]string, error) {
 		}
 		if !info.IsDir() {
 			files = append(files, info.Name())
-			fmt.Println(path)
 		}
 		return nil
 	})
