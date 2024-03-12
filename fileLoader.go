@@ -47,7 +47,7 @@ func ListFilesRecursively(dir string) ([]string, error) {
 			return err
 		}
 		if !info.IsDir() {
-			files = append(files, info.Name())
+			files = append(files, path)
 		}
 		return nil
 	})
