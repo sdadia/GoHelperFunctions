@@ -17,7 +17,7 @@ func ReadFile(fileName string) (string, error) {
 
 }
 
-func listDirectory(directoryPath string) ([]string, []string, error) {
+func Ls(directoryPath string) ([]string, []string, error) {
 
 	var files = []string{}
 	var directories = []string{}
