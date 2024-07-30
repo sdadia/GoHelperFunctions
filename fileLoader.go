@@ -56,3 +56,8 @@ func ListFilesRecursively(dir string) ([]string, error) {
 	}
 	return files, nil
 }
+
+func HelloWorld() {
+
+	slog.Info("Hello from module!")
+}
