@@ -17,26 +17,16 @@ func ReadFile(fileName string) (string, error) {
 
 }
 
-func Ls(directoryPath string) ([]string, []string, error) {
+func Ls(directoryPath string) ([]os.DirEntry, error) {
 
-	var files = []string{}
-	var directories = []string{}
-
+	// Go through the directory
 	directoryEntries, err := os.ReadDir(directoryPath)
 	if err != nil {
 		slog.Error("Error listing in directory : %v. Error is %v\n", directoryPath, err)
-		return nil, nil, err
+		return nil, err
 	}
 
-	for _, entry := range directoryEntries {
-		if entry.IsDir() {
-			directories = append(directories, entry.Name())
-		} else {
-			files = append(files, entry.Name())
-		}
-	}
-
-	return files, directories, nil
+	return directoryEntries, nil
 }
 
 func ListFilesRecursively(dir string) ([]string, error) {
